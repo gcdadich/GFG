@@ -60,6 +60,35 @@ class Solution
             indexB++;
         }
         return true;
-        
+        /*
+	 if (a.length()!=b.length()) {
+            return false;
+        }
+        int n =a.length();
+        int freq[] = new int[26];
+        int indexA= 0;
+        int indexB=0;
+        while(indexA<n && indexB<n){
+            char charA = a.charAt(indexA);
+            //ascii value a =97
+            int freqIndexA = charA-97;
+
+            freq[freqIndexA]+=1;
+
+            char charB = b.charAt(indexB);
+            int freqIndexB = charB-97;
+
+            freq[freqIndexB]-=1;
+            indexA++;
+            indexB++;
+        }
+        for (int i = 0; i < 26; i++) {
+            if(freq[i] !=0){
+                return false;
+            }
+        }
+        return true;
+
+	*/
     }
 }
