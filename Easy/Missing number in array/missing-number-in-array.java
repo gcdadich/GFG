@@ -6,19 +6,18 @@ import java.util.*;
 
 class GFG {
     public static void main(String[] args) throws IOException {
-        BufferedReader br =
-            new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int t = Integer.parseInt(br.readLine().trim());
         while (t-- > 0) {
             int n = Integer.parseInt(br.readLine().trim());
             String[] str = br.readLine().trim().split(" ");
-            int[] array = new int[n - 1];
+            int[] arr = new int[n - 1];
             for (int i = 0; i < n - 1; i++) {
-                array[i] = Integer.parseInt(str[i]);
+                arr[i] = Integer.parseInt(str[i]);
             }
             Solution sln = new Solution();
-            System.out.println(sln.missingNumber(array, n));
+            System.out.println(sln.missingNumber(n, arr));
         }
     }
 }
@@ -26,18 +25,24 @@ class GFG {
 
 
 // User function Template for Java
-
 class Solution {
-    int missingNumber(int array[], int n) {
-        // Your Code Here
-        //methods 1 
-        int expected_no_elements = array.length + 1;
-        int total_sum = expected_no_elements *(expected_no_elements+1)/2;
-        
-        int sum = 0;
-        for(int i=0;i<array.length;i++){
-            sum = sum +array[i];
+
+    // Note that the size of the array is n-1
+    int missingNumber(int n, int arr[]) {
+
+             int x1 = 0;
+        int x2 = 1;
+
+        // For xor of all the elements in the array
+        for (int i = 0; i < arr.length; i++) {
+            x1 = x1 ^ arr[i];
         }
-        return total_sum - sum;
-    }
+
+        // For xor of all the elements from 1 to n+1
+        for (int i = 2; i < n + 1; i++) {
+            x2 = x2 ^ i;
+        }
+
+        return (x1 ^ x2);
+     }    
 }
